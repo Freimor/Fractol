@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sskinner <sskinner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/02 17:22:50 by sskinner          #+#    #+#             */
-/*   Updated: 2019/08/03 17:46:23 by sskinner         ###   ########.fr       */
+/*   fractol->c_reated: 2019/08/02 17:22:50 by sskinner          #+#    #+#             */
+/*   Updated: 2019/08/04 16:20:49 by sskinner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,37 +24,40 @@ int color(int r, int g,int b)
 {
 	return ((r << 16) | (g << 8) | b);
 }
-void	fractol_test(t_fractol *fractol)
+void	mandelbrot(t_fractol *mand)
 {
-	float zi, zr, ci, cr, tmp;
-	int i, j, k, m;
+	float	temp;
+	int		i;
+	int		j;
+	int		k;
+	int		m;
 	
 	i = -(XMAX / 2);
 	while (i < XMAX / 2)
-	{                      //  проходим по всем пикселям оси х
-		ci = (((float)i + XC) / (float)(ZOOM)); //160.0
-		j = -(YMAX / 2);                    //  присваеваем мнимой части с - i/160
+	{
+		mand->c_i = (((float)i + mand->move_x) / mand->zoom); //160.0
+		j = -(YMAX / 2);                    //imaginary  присваеваем мнимой части с - i/160
 		while (j < YMAX / 2)  
 		{                 //  проходим по всем пикселям оси y6
-			cr = (((float)j + YC) / (float)(ZOOM));             //  присваеваем  ещественной части с - j/120
-			zi = zr = 0.0;
+			mand->c_r = (((float)j + mand->move_y) / mand->zoom);             //real  присваеваем  вещественной части с - j/120
+			mand->z_i = mand->z_r = 0.0;
 			k = 0;                       //  присваеваем вещественной и мнимой части z - 0
-			while (k < DEPTH)
+			while (k < ITERATION )
 			{         //  вычисляем множество Мандельброта 
-				tmp = zr*zr - zi*zi;
-				zi = 2*zr*zi + ci;
-				zr = tmp + cr;
-				if (zr*zr + zi*zi > 1.0E16)        //  если |z| слишком велико, то
+				temp = mand->z_r * mand->z_r - mand->z_i * mand->z_i;
+				mand->z_i = 2 * mand->z_r * mand->z_i + mand->c_i;
+				mand->z_r = temp + mand->c_r;
+				if (mand->z_r*mand->z_r + mand->z_i * mand->z_i > 1.0E16)        //  если |z| слишком велико, то
 					break;                           //  выход из цикла
 				k++;
 			}
-			if (k < DEPTH)
+			if (k < ITERATION)
 			{                     //  |z| - велико
-				m = k%8 + 1;                       //  - это внешняя точка
-				putpixel(fractol, i + XMAX / 2, j + YMAX / 2, color(m*4 + 231, 76, 60));     //	 красного
+				m = (k%8 + 1) * 4;                       //  - это внешняя точка
+				putpixel(mand, i + XMAX / 2, j + YMAX / 2, color(m + 231, 76, 60));     //	 красного
 			}
 			else
-				putpixel(fractol, i + XMAX / 2, j + YMAX / 2, color(0,0,0));      // внутренняя точка и закрашиваем её в чёрный цвет
+				putpixel(mand, i + XMAX / 2, j + YMAX / 2, color(0,0,0));      // внутренняя точка и закрашиваем её в чёрный цвет
 			j++;
 		}
 		i++;
