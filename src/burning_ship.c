@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   burning_ship.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sskinner <sskinner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/02 17:22:50 by sskinner          #+#    #+#             */
-/*   Updated: 2019/08/26 18:32:53 by sskinner         ###   ########.fr       */
+/*   Created: 2019/08/26 18:32:37 by sskinner          #+#    #+#             */
+/*   Updated: 2019/08/26 19:01:55 by sskinner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-void	mandelbrot(t_fractol *st)
+void	burning_ship(t_fractol *st)
 {
 	st->x = 0;
 	while (st->x < st->x_size_fractol)
@@ -30,9 +30,9 @@ void	mandelbrot(t_fractol *st)
 			while ((st->z.r * st->z.r + st->z.i * st->z.i < 4)
 			&& (st->it < ITERATION))
 			{
-				st->temp = st->z.r * st->z.r - st->z.i * st->z.i;
-				st->z.i = 2 * st->z.r * st->z.i + st->c.i;
-				st->z.r = st->temp + st->c.r;
+				st->temp = st->z.r * st->z.r - st->z.i * st->z.i + st->c.r;
+				st->z.i = fabs(2 * st->z.r * st->z.r) + st->c.i;
+				st->z.r = fabs(st->temp);
 				st->it++;
 			}
 			//putpixel(st, st->x, st->y, set_color(st));
