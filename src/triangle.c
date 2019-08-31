@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   triangle.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sskinner <sskinner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/02 17:22:50 by sskinner          #+#    #+#             */
-/*   Updated: 2019/08/29 17:45:27 by sskinner         ###   ########.fr       */
+/*   Created: 2019/08/27 18:05:59 by sskinner          #+#    #+#             */
+/*   Updated: 2019/08/28 17:21:58 by sskinner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-void	mandelbrot(t_fractol *st)
+void	triangle(t_fractol *st)
 {
 	st->x = 0;
 	while (st->x < st->x_size_fractol)
@@ -29,9 +29,9 @@ void	mandelbrot(t_fractol *st)
 			while ((st->z.r * st->z.r + st->z.i * st->z.i < 4)
 			&& (st->it < st->max_it))
 			{
-				st->temp = st->z.r * st->z.r - st->z.i * st->z.i + st->c.r;
-				st->z.i = 2 * st->z.r * st->z.i + st->c.i;
-				st->z.r = st->temp;
+				st->temp = st->z.r * st->z.r - st->z.i * st->z.i;
+				st->z.i = -2 * st->z.r * st->z.i + st->c.i;
+				st->z.r = st->temp + st->c.r;
 				st->it++;
 			}
 			put_pixel_to_addr(st, st->x, st->y, set_color(st));

@@ -6,13 +6,12 @@
 /*   By: sskinner <sskinner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 16:36:45 by sskinner          #+#    #+#             */
-/*   Updated: 2019/08/04 16:37:52 by sskinner         ###   ########.fr       */
+/*   Updated: 2019/08/29 17:53:42 by sskinner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEY_MACOS_H
-
-# define KEY_MACOS_H
+#ifndef KEY_MAC_H
+# define KEY_MAC_H
 
 # define MOUSE_LEFT_BUTTON	1
 # define MOUSE_RIGHT_BUTTON	2
@@ -42,7 +41,10 @@
 
 # define MAIN_PAD_ESC		53
 # define MAIN_PAD_I			34
+# define MAIN_PAD_D			2
 # define MAIN_PAD_P			35
+# define MAIN_PAD_Z			6
+# define MAIN_PAD_X			7
 # define MAIN_PAD_0			29
 # define MAIN_PAD_1			18
 # define MAIN_PAD_2			19
@@ -53,8 +55,13 @@
 # define MAIN_PAD_7			26
 # define MAIN_PAD_8			28
 # define MAIN_PAD_9			25
+# define MAIN_PAD_COMMA		43
+# define MAIN_PAD_DOT		47
 # define MAIN_PAD_PLUS		24
 # define MAIN_PAD_MINUS		27
+# define MAIN_PAD_C_BRAC_L	33
+# define MAIN_PAD_C_BRAC_R	30
+
 # define MAIN_PAD_LESS		43
 # define MAIN_PAD_MORE		47
 

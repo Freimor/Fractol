@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   buffalo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sskinner <sskinner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/02 17:22:50 by sskinner          #+#    #+#             */
-/*   Updated: 2019/08/29 17:45:27 by sskinner         ###   ########.fr       */
+/*   Created: 2019/08/29 17:38:20 by sskinner          #+#    #+#             */
+/*   Updated: 2019/08/29 17:46:43 by sskinner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-void	mandelbrot(t_fractol *st)
+void	buffalo(t_fractol *st)
 {
 	st->x = 0;
 	while (st->x < st->x_size_fractol)
@@ -26,11 +26,11 @@ void	mandelbrot(t_fractol *st)
 			st->z.i = 0.0;
 			st->z.r = 0.0;
 			st->it = 0;
-			while ((st->z.r * st->z.r + st->z.i * st->z.i < 4)
+			while ((st->z.r * st->z.r + st->z.i * st->z.i < 7)
 			&& (st->it < st->max_it))
 			{
 				st->temp = st->z.r * st->z.r - st->z.i * st->z.i + st->c.r;
-				st->z.i = 2 * st->z.r * st->z.i + st->c.i;
+				st->z.i = -2.0 * st->z.r * fabs(st->z.i) + st->c.i;
 				st->z.r = st->temp;
 				st->it++;
 			}
